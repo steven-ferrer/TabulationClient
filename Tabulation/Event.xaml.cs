@@ -42,14 +42,24 @@ namespace Tabulation
 
         private void initEventList()
         {
-            dataList.Add( new EventListItem() { EventID = "1.", EventName = "Cheershit"} );
+            //TODO: make this fetch from the REST services
+            dataList.Add( new EventListItem() { EventID = "1", EventName = "CheerLeading"} );
+            dataList.Add( new EventListItem() { EventID = "2", EventName = "Mr. And Miss Intrams"} );
         }
 
         public void ItemIsClicked(object sender, ItemClickEventArgs e )
         {
             EventListItem item = (EventListItem) e.ClickedItem;
             choiceID = item.EventID;
-            this.Frame.Navigate(typeof(Voting));
+            if (choiceID == "1")
+            {
+                this.Frame.Navigate(typeof(CheerLeading));
+            }
+            else if (choiceID == "2")
+            {
+                this.Frame.Navigate(typeof(Pageant));
+            }
+            
         }
 
 

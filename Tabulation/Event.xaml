@@ -8,13 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
             <TextBlock x:Name="txt" Text="Events" FontSize="40" FontWeight="Bold" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <ListView x:Name="EventList" SelectionMode="None" Margin="20,20,20,20" ItemClick="ItemIsClicked" IsItemClickEnabled="True">
+            <ListView x:Name="EventList" SelectionMode="None" Margin="20,20,20,20" ItemClick="ItemIsClicked" IsItemClickEnabled="True" Width="300" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding EventID}" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding EventName}" VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>

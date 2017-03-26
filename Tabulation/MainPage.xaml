@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel HorizontalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Left" Text="Enter Server Address: " Margin="20" FontSize="16" />
             <TextBox x:Name="tb_serverAdd" Margin="20,0" Width="250" PlaceholderText="Server Address"/>
             <Button Margin="20" Content="OK" Click="setServerAddress"/>
