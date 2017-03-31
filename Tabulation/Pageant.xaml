@@ -27,22 +27,11 @@
 
             <StackPanel Orientation="Vertical">
 
-                <TextBlock Text="Criterias" Margin="20" FontSize="40" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="Creative Wear" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Sports Wear" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Swim Wear" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Formal Wear" FontSize="20" Margin="0,9"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="creative" Width="300" PlaceholderText="1 -  10" Margin="0,5" />
-                        <TextBox x:Name="sports" Width="300" PlaceholderText="1 - 10" Margin="0,5"/>
-                        <TextBox x:Name="swim" Width="300" PlaceholderText="1 - 10" Margin="0,5"/>
-                        <TextBox x:Name="formal" Width="300" PlaceholderText="1 - 10" Margin="0,5"/>
-                    </StackPanel>
-                </StackPanel>
+                <TextBlock Text="Vote Here" Margin="20" FontSize="40" SelectionChanged="TextBlock_SelectionChanged" />
+                <TextBlock Text="Criteria" FontSize="20"/>
+                <ComboBox x:Name="comboBox" Width="250"/>
                 <Button Content="Submit" Click="vote_submit" Margin="0,50"/>
+                
             </StackPanel>
         </StackPanel>
 
