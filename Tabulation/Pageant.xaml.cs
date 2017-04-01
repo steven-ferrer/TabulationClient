@@ -26,15 +26,13 @@ namespace Tabulation
     /// </summary>
     public sealed partial class Pageant : Page
     {
-        private ObservableCollection<CandidateModel> dataList = new ObservableCollection<CandidateModel>();
         public Pageant()
         {
             this.InitializeComponent();
-            initCriteriaBox();
-            CandidateList.ItemsSource = dataList;
+            initCriteriaCandid();
         }
 
-        public async void initCriteriaBox()
+        public async void initCriteriaCandid()
         {
             //Create HTTP client object
             HttpClient webClient = new HttpClient();

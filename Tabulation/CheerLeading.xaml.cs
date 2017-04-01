@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,32 +26,56 @@ namespace Tabulation
     /// </summary>
     public sealed partial class CheerLeading : Page
     {
-
-        private ObservableCollection<CandidateModel> dataList = new ObservableCollection<CandidateModel>();
         public CheerLeading()
         {
             this.InitializeComponent();
-            initCandidates();
-            CandidateList.ItemsSource = dataList;
+            initCandid();
         }
 
-        public void initCandidates()
+        public async void initCandid()
         {
-            dataList.Add(new CandidateModel() { ID = "1", college = "CCS", name = "RedHawks" });
-            dataList.Add(new CandidateModel() { ID = "1", college = "CBA", name = "GreenTigers" });
-            dataList.Add(new CandidateModel() { ID = "1", college = "CoEng", name = "MaroonSharks" });
+            //Create HTTP client object
+            HttpClient webClient = new HttpClient();
+
+            //user-agent header to the GET request
+            var headers = webClient.DefaultRequestHeaders;
+            //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
+
+            //assign user-agents
+            string uriString = "http://" + MainPage._ServerAddress + "/tabulation/fetch/2";
+            Uri requestUri = new Uri(uriString);
+
+            //Send the GET request asynchronously and retrieve the response as a string.
+            HttpResponseMessage webResponse = new HttpResponseMessage();
+            string webResponseBody = string.Empty;
+            try
+            {
+                webResponse = await webClient.GetAsync(requestUri);
+                webResponse.EnsureSuccessStatusCode();
+                webResponseBody = await webResponse.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+            }
+
+            Categs_Candids_Container ccc = JsonConvert.DeserializeObject<Categs_Candids_Container>(webResponseBody);
+
+            //initialize Candidates
+            ObservableCollection<Candid> candid = new ObservableCollection<Candid>(ccc.categs_candids[1].candids);
+
+            CandidateList.ItemsSource = candid;
+
+            //TODO: remove this thing
+            foreach (Candid candidx in ccc.categs_candids[1].candids)
+            {
+                Debug.WriteLine("ID:{0} Name:{1}", candidx.ID, candidx.name);
+            }
         }
 
         public void vote_submit(object sender, RoutedEventArgs e)
         {
 
         }
-    }
-
-    public class CandidateModel
-    {
-        public string ID { get; set; }
-        public string name { get; set; }
-        public string college { get; set; }
     }
 }
