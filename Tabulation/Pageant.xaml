@@ -27,30 +27,11 @@
 
             <StackPanel Orientation="Vertical">
 
-                <TextBlock Text="Criterias" Margin="20" FontSize="40" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="Cheer Critia" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Dance" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Stunts" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Pyramid" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Tosses" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Tumbling" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Flow of Routine/Transition" FontSize="20" Margin="0,9"/>
-                        <TextBlock FontSize="20" Margin="0,9">Over-all Presentation,<LineBreak />Crowd appeal</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="cheer" Width="300" PlaceholderText="Limit 10" Margin="0,5" />
-                        <TextBox x:Name="dance" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="stuns" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="pyramid" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="toss" Width="300" PlaceholderText="Limit 15" Margin="0,5"/>
-                        <TextBox x:Name="tumbling" Width="300" PlaceholderText="Limit 10" Margin="0,5"/>
-                        <TextBox x:Name="transition" Width="300" PlaceholderText="Limit 5" Margin="0,5"/>
-                        <TextBox x:Name="overall" Width="300" PlaceholderText="Limit 10" Margin="0,15"/>
-                    </StackPanel>
-                </StackPanel>
+                <TextBlock Text="Vote Here" Margin="20" FontSize="40" />
+                <TextBlock Text="Criteria" FontSize="20"/>
+                <ComboBox x:Name="comboBox" Width="250"/>
                 <Button Content="Submit" Click="vote_submit" Margin="0,50"/>
+                
             </StackPanel>
         </StackPanel>
 
