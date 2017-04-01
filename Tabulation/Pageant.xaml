@@ -29,7 +29,7 @@
 
                 <TextBlock Text="Vote Here" Margin="20" FontSize="40" />
                 <TextBlock Text="Criteria" FontSize="20"/>
-                <ComboBox x:Name="comboBox" Width="250"/>
+                <ComboBox x:Name="critiaList" Width="250" ItemsSource="{Binding categ}" DisplayMemberPath="name"/>
                 <Button Content="Submit" Click="vote_submit" Margin="0,50"/>
                 
             </StackPanel>

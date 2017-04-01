@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
+using Newtonsoft.Json;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,11 +30,11 @@ namespace Tabulation
         public Pageant()
         {
             this.InitializeComponent();
-            initCandidates();
+            initCriteriaBox();
             CandidateList.ItemsSource = dataList;
         }
 
-        public async void initCandidates()
+        public async void initCriteriaBox()
         {
             //Create HTTP client object
             HttpClient webClient = new HttpClient();
@@ -55,13 +56,24 @@ namespace Tabulation
                 webResponse.EnsureSuccessStatusCode();
                 webResponseBody = await webResponse.Content.ReadAsStringAsync();
             }
-
             catch (Exception ex)
             {
                 webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
             }
-            Debug.WriteLine(webResponseBody);
-            //Categories categs = JsonConvert.DeserializeObject<Categories>(webResponseBody);
+
+            CategList categs = JsonConvert.DeserializeObject<CategList>(webResponseBody);
+
+            ObservableCollection<Categ> categ = new ObservableCollection<Categ>(categs.categs);
+
+            critiaList.ItemsSource = categ;
+
+
+            //TODO: remove this thing
+            foreach (Categ categx in categs.categs)
+            {
+                Debug.WriteLine("ID:{0} Name:{1}", categx.id, categx.name);
+            }
+
 
         }
 
@@ -69,18 +81,20 @@ namespace Tabulation
         {
 
         }
+
     }
 
 
-    public class Categories
+    public class CategList
     {
-        public Category[] categs { get; set; }
+        public Categ[] categs { get; set; }
     }
 
-    public class Category
+    public class Categ
     {
         public string id { get; set; }
         public string name { get; set; }
     }
+
 
 }
