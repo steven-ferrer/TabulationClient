@@ -11,6 +11,8 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Left" Text="Enter Server Address: " Margin="20" FontSize="16" />
             <TextBox x:Name="tb_serverAdd" Margin="20,0" Width="250" PlaceholderText="Server Address"/>
+            <TextBlock HorizontalAlignment="Left" Text="Judge ID:" Margin="20" FontSize="16" />
+            <TextBox x:Name="tb_judgeName" Margin="20,0" Width="250" PlaceholderText="Ex.: 1,2,3 etc..."/>
             <Button Margin="20" Content="OK" Click="setServerAddress"/>
         </StackPanel>
     </Grid>

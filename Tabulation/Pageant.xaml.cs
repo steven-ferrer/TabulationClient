@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 using Newtonsoft.Json;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -85,9 +86,59 @@ namespace Tabulation
 
         }
 
-        public void vote_submit(object sender, RoutedEventArgs e)
+        public async void vote_submit(object sender, RoutedEventArgs e)
         {
 
+            if(CandidateList.SelectedItem == null)
+            {
+                MessageDialog errorx = new MessageDialog("Please Select a Candidate");
+                await errorx.ShowAsync();
+                return;
+            }
+            Candid selected_candid = CandidateList.SelectedItem as Candid;
+
+            Categ selected_categ = critiaList.SelectedItem as Categ;
+
+            
+
+            //Create HTTP client object
+            HttpClient webClient = new HttpClient();
+
+            //user-agent header to the GET request
+            var headers = webClient.DefaultRequestHeaders;
+            //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
+
+            //assign URI string for cheer
+            string uriString = "http://" + MainPage._ServerAddress +
+                "/tabulation/commit_vote/" +
+                MainPage._JudgeID + "/" + // judge id
+                selected_candid.ID + "/" + // candidate id 
+                selected_categ.id + "/" + //cheer categ
+                tb_vote.Text;
+            Uri requestUri = new Uri(uriString);
+
+            //Send the GET request asynchronously and retrieve the response as a string.
+            HttpResponseMessage webResponse = new HttpResponseMessage();
+            string webResponseBody = string.Empty;
+            try
+            {
+                webResponse = await webClient.GetAsync(requestUri);
+                webResponse.EnsureSuccessStatusCode();
+                webResponseBody = await webResponse.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+            }
+
+            if (!(webResponseBody == "ok"))
+            {
+                return;
+            }
+
+            MessageDialog finish = new MessageDialog("Voting Done");
+            await finish.ShowAsync();
+            tb_vote.Text = string.Empty;
         }
 
     }

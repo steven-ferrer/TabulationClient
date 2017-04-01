@@ -24,6 +24,13 @@ namespace Tabulation
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private static string _judgeID;
+        public static string _JudgeID
+        {
+            get { return _judgeID; }
+            set { _judgeID = value; }
+        }
+
         private static string _serverAddress;
         public static string _ServerAddress
         {
@@ -34,12 +41,17 @@ namespace Tabulation
         public MainPage()
         {
             this.InitializeComponent();
-
         }
 
         public void setServerAddress(object sender, RoutedEventArgs e)
         {
+            if (tb_judgeName.Text == "")
+                return;
+            if (tb_serverAdd.Text == "")
+                return;
+
             _ServerAddress = tb_serverAdd.Text;
+            _JudgeID = tb_judgeName.Text;
             this.Frame.Navigate(typeof(Event));
         }
     }
