@@ -61,19 +61,29 @@ namespace Tabulation
                 webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
             }
 
-            CategList categs = JsonConvert.DeserializeObject<CategList>(webResponseBody);
-
-            ObservableCollection<Categ> categ = new ObservableCollection<Categ>(categs.categs);
+            Categs_Candids_Container ccc = JsonConvert.DeserializeObject<Categs_Candids_Container>(webResponseBody);
+            
+            // initialize category
+            ObservableCollection<Categ> categ = new ObservableCollection<Categ>(ccc.categs_candids[0].categs);
 
             critiaList.ItemsSource = categ;
 
-
             //TODO: remove this thing
-            foreach (Categ categx in categs.categs)
+            foreach (Categ categx in ccc.categs_candids[0].categs)
             {
                 Debug.WriteLine("ID:{0} Name:{1}", categx.id, categx.name);
             }
 
+            //initialize Candidates
+            ObservableCollection<Candid> candid = new ObservableCollection<Candid>(ccc.categs_candids[1].candids);
+
+            CandidateList.ItemsSource = candid;
+
+            //TODO: remove this thing
+            foreach (Candid candidx in ccc.categs_candids[1].candids)
+            {
+                Debug.WriteLine("ID:{0} Name:{1}", candidx.ID, candidx.name);
+            }
 
         }
 
@@ -85,15 +95,30 @@ namespace Tabulation
     }
 
 
-    public class CategList
+    public class Categs_Candids_Container
+    {
+        public Categs_Candids[] categs_candids { get; set; }
+    }
+
+    public class Categs_Candids
     {
         public Categ[] categs { get; set; }
+        public Candid[] candids { get; set; }
     }
 
     public class Categ
     {
         public string id { get; set; }
         public string name { get; set; }
+    }
+
+    public class Candid
+    {
+        public string ID { get; set; }
+        public string name { get; set; }
+        public string college { get; set; }
+        public string gender { get; set; }
+        public string event_ID { get; set; }
     }
 
 
