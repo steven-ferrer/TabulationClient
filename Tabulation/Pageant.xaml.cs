@@ -55,6 +55,7 @@ namespace Tabulation
                 webResponse.EnsureSuccessStatusCode();
                 webResponseBody = await webResponse.Content.ReadAsStringAsync();
             }
+
             catch (Exception ex)
             {
                 webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
@@ -68,7 +69,6 @@ namespace Tabulation
         {
 
         }
-
     }
 
 
