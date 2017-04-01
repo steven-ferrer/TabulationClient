@@ -42,7 +42,7 @@ namespace Tabulation
             //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
 
             //assign user-agents
-            string uriString = "http://" + MainPage._ServerAddress + "/tabulation/fetch/2";
+            string uriString = "http://" + MainPage._ServerAddress + "/tabulation/fetch/1";
             Uri requestUri = new Uri(uriString);
 
             //Send the GET request asynchronously and retrieve the response as a string.
