@@ -25,33 +25,130 @@
                 </ListView>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical">
-                
-                <TextBlock Text="Criterias" Margin="20" FontSize="40" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="Cheer Critia" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Dance" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Stunts" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Pyramid" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Tosses" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Tumbling" FontSize="20" Margin="0,9"/>
-                        <TextBlock Text="Flow of Routine/Transition" FontSize="20" Margin="0,9"/>
-                        <TextBlock FontSize="20" Margin="0,9">Over-all Presentation,<LineBreak />Crowd appeal</TextBlock>
+            <ScrollViewer HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,0,100,0">
+                    <TextBlock Text="Criterias" Margin="20" FontSize="40" />
+                    <TextBlock Text="Cheer"  FontSize="30" Margin="0,20,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,20">
+                        <StackPanel Orientation="Vertical" Margin="20,0">
+                            <TextBlock Text="Vocal Clarity" FontSize="20" Height="50" HorizontalAlignment="Center"/>
+                            <TextBox x:Name="cheer_vc" Width="100" Margin="10,0" PlaceholderText="1-10 Points" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="20,0">
+                            <TextBlock Text="Motions" FontSize="20" Height="50" HorizontalAlignment="Center"/>
+                            <TextBox x:Name="cheer_m" Width="100" Margin="10,0" PlaceholderText="1-10 Points" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="20,0">
+                            <TextBlock Text="Space and &#x0a;Synchronization" FontSize="20" TextAlignment="Center" Height="50" />
+                            <TextBox x:Name="cheer_ss" PlaceholderText="1-10 Points" />
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="cheer" Width="300" PlaceholderText="Limit 10" Margin="0,5" />
-                        <TextBox x:Name="dance" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="stuns" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="pyramid" Width="300" PlaceholderText="Limit 25" Margin="0,5"/>
-                        <TextBox x:Name="toss" Width="300" PlaceholderText="Limit 15" Margin="0,5"/>
-                        <TextBox x:Name="tumbling" Width="300" PlaceholderText="Limit 10" Margin="0,5"/>
-                        <TextBox x:Name="transition" Width="300" PlaceholderText="Limit 5" Margin="0,5"/>
-                        <TextBox x:Name="overall" Width="300" PlaceholderText="Limit 10" Margin="0,15"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,20">
+                        <StackPanel Orientation="Vertical" Margin="20,0">
+                            <TextBlock Text="Choreography &#x0a;and Execution" FontSize="20" Height="50" />
+                            <TextBox x:Name="cheer_ce" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="20,0">
+                            <TextBlock Text="Overall Effect" FontSize="20" Height="50" />
+                            <TextBox x:Name="cheer_oe" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
                     </StackPanel>
+                    <TextBlock Text="Tumbling" FontSize="30" Margin="0,20,0,0"/>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="150" Margin="10,0"/>
+                            <TextBlock Text="Execution" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Diffuculty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Execution &#x0a;and Difficulty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Standing Tumbling" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
+                            <TextBox x:Name="st_exec" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                            <TextBox x:Name="st_diff" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Runing Tumbling" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
+                            <TextBox x:Name="ru_exec" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                            <TextBox x:Name="ru_diff" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Synchronized Tumbling" Width="160" FontSize="15" Margin="5,0" VerticalAlignment="Center"/>
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBox x:Name="sy_exec_diff" Width="120" Margin="20,0" PlaceholderText="1-15 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Jumping" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="ju_exec" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                            <TextBox x:Name="ju_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Overall Effect" Width="160" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBox x:Name="tumb_oe_exec_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Building" FontSize="30" Margin="0,20,0,0" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="150" Margin="10,0"/>
+                            <TextBlock Text="Execution" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Diffuculty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Execution &#x0a;and Difficulty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Stunts" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="stunts_exec" Width="120" Margin="10,0" PlaceholderText="1-25 Points"/>
+                            <TextBox x:Name="stunts_diff" Width="120" Margin="10,0" PlaceholderText="1-25 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Pyramids" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="py_exec" Width="120" Margin="10,0" PlaceholderText="1-25 Points"/>
+                            <TextBox x:Name="py_diff" Width="120" Margin="10,0" PlaceholderText="1-25 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Tosses" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="to_exec" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                            <TextBox x:Name="to_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Overall Effect" Width="160" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBox x:Name="build_oe_exec_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Dance/Choreography" FontSize="30" Margin="0,20,0,0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="150" Margin="10,0"/>
+                            <TextBlock Text="Execution" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Diffuculty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                            <TextBlock Text="Execution &#x0a;and Difficulty" FontSize="20" Width="120" TextAlignment="Center" Margin="10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" >
+                            <TextBlock Text="Dance" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="dance_exec" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                            <TextBox x:Name="dance_diff" Width="120" Margin="10,0" PlaceholderText="1-15 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Formation/Transition" Width="150" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBox x:Name="form_exec" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                            <TextBox x:Name="form_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Overall Effect" Width="160" FontSize="15" Margin="10,0" VerticalAlignment="Center" />
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBlock Width="120" Margin="10,0"/>
+                            <TextBox x:Name="dance_oe_exec_diff" Width="120" Margin="10,0" PlaceholderText="1-10 Points"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button Content="Submit" Click="vote_submit" Margin="0,50"/>
                 </StackPanel>
-                <Button Content="Submit" Click="vote_submit" Margin="0,50"/>
-            </StackPanel>
+            </ScrollViewer>
         </StackPanel>
         
     </Grid>

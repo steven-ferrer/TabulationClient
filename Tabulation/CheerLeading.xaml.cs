@@ -77,5 +77,12 @@ namespace Tabulation
         {
 
         }
+
+        private bool allFilled()
+        {
+            
+
+            return true;
+        }
     }
 }
