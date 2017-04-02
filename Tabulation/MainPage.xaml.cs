@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.ViewManagement;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Text.RegularExpressions;
+using Windows.Web.Http;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -43,8 +45,35 @@ namespace Tabulation
             this.InitializeComponent();
         }
 
-        public void setServerAddress(object sender, RoutedEventArgs e)
+        public async void setServerAddress(object sender, RoutedEventArgs e)
         {
+            //Create HTTP client object
+            HttpClient webClient = new HttpClient();
+
+            //user-agent header to the GET request
+            var headers = webClient.DefaultRequestHeaders;
+            //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
+
+            //assign URI string for cheer
+            string uriString = "http://" + tb_serverAdd.Text + "/tabulation/";
+            Uri requestUri = new Uri(uriString);
+
+            //Send the GET request asynchronously and retrieve the response as a string.
+            HttpResponseMessage webResponse = new HttpResponseMessage();
+            string webResponseBody = string.Empty;
+            try
+            {
+                webResponse = await webClient.GetAsync(requestUri);
+                webResponse.EnsureSuccessStatusCode();
+                webResponseBody = await webResponse.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageDialog exerror = new MessageDialog("Invalid Server Address");
+            }
+
+            if()
+
             if (tb_judgeName.Text == "")
                 return;
             if (tb_serverAdd.Text == "")
