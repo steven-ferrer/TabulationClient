@@ -47,6 +47,14 @@ namespace Tabulation
 
         public async void setServerAddress(object sender, RoutedEventArgs e)
         {
+
+            if (tb_serverAdd.Text == "")
+            {
+                MessageDialog exerror = new MessageDialog("Server address is empty");
+                exerror.Title = "Error";
+                await exerror.ShowAsync();
+                return;
+            }
             //Create HTTP client object
             HttpClient webClient = new HttpClient();
 
@@ -70,14 +78,28 @@ namespace Tabulation
             catch (Exception ex)
             {
                 MessageDialog exerror = new MessageDialog("Invalid Server Address");
+                exerror.Title = "Error";
+                await exerror.ShowAsync();
+                return;
             }
 
-            if()
+            if( ! (webResponseBody == "ok"))
+            {
+                MessageDialog exerror = new MessageDialog("Invalid Server Address");
+                exerror.Title = "Error";
+                await exerror.ShowAsync();
+                return;
+            }
 
             if (tb_judgeName.Text == "")
+            {
+                MessageDialog exerror = new MessageDialog("Judge is empty");
+                exerror.Title = "Error";
+                await exerror.ShowAsync();
                 return;
-            if (tb_serverAdd.Text == "")
-                return;
+            }
+                
+            
 
             _ServerAddress = tb_serverAdd.Text;
             _JudgeID = tb_judgeName.Text;
