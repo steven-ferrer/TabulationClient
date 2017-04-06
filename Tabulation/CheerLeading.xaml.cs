@@ -44,7 +44,8 @@ namespace Tabulation
             //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
 
             //assign user-agents
-            string uriString = "http://" + MainPage._ServerAddress + "/tabulation/fetch/1";
+            string uriString = string.Format("http://{0}/tabulation/fetch/1", MainPage._ServerAddress);
+            
             Uri requestUri = new Uri(uriString);
 
             //Send the GET request asynchronously and retrieve the response as a string.
@@ -58,7 +59,7 @@ namespace Tabulation
             }
             catch (Exception ex)
             {
-                webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                webResponseBody = string.Format("Error: {0} Message: {1}", ex.HResult.ToString("X"), ex.Message);
             }
 
             Categs_Candids_Container ccc = JsonConvert.DeserializeObject<Categs_Candids_Container>(webResponseBody);
@@ -136,12 +137,8 @@ namespace Tabulation
                 //string header = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
 
                 //assign URI string for cheer
-                string uriString = "http://" + MainPage._ServerAddress + 
-                    "/tabulation/commit_vote/" + 
-                    MainPage._JudgeID + "/" + // judge id
-                    candid_id + "/" + // candidate id 
-                    "5/" + //cheer categ
-                    cheer_total;
+                string uriString = string.Format("http://{0}/tabulation/commit_vote/{1}/{2}/5/{3}",
+                                                MainPage._ServerAddress, MainPage._JudgeID, candid_id, cheer_total);
                 Uri requestUri = new Uri(uriString);
 
                 //Send the GET request asynchronously and retrieve the response as a string.
@@ -155,7 +152,8 @@ namespace Tabulation
                 }
                 catch (Exception ex)
                 {
-                    webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                    webResponseBody = string.Format("Error: {0} Message: {1}", 
+                                                    ex.HResult.ToString("X"), ex.Message);
                 }
 
                 if (!(webResponseBody == "ok"))
@@ -163,12 +161,31 @@ namespace Tabulation
                     return;
                 }
 
-                uriString = "http://" + MainPage._ServerAddress +
-                   "/tabulation/commit_vote/" +
-                   MainPage._JudgeID + "/" + // judge id
-                   candid_id + "/" + // candidate id 
-                   "6/" + //cheer categ
-                   dance_total;
+                uriString = string.Format("http://{0}/tabulation/commit_vote/{1}/{2}/6/{3}",
+                                          MainPage._ServerAddress, MainPage._JudgeID, candid_id, dance_total);
+
+                requestUri = new Uri(uriString);
+                webResponseBody = string.Empty;
+                try
+                {
+                    webResponse = await webClient.GetAsync(requestUri);
+                    webResponse.EnsureSuccessStatusCode();
+                    webResponseBody = await webResponse.Content.ReadAsStringAsync();
+                }
+                catch (Exception ex)
+                {
+                    webResponseBody = string.Format("Error: {0} Message: {1}", 
+                                            ex.HResult.ToString("X"), ex.Message);
+                }
+
+                if (!(webResponseBody == "ok"))
+                {
+                    return;
+                }
+
+
+                uriString = string.Format("http://{0}/tabulation/commit_vote/{1}/{2}/7/{3}",
+                                            MainPage._ServerAddress, MainPage._JudgeID, candid_id, building_total);
 
                 requestUri = new Uri(uriString);
                 webResponseBody = string.Empty;
@@ -188,12 +205,8 @@ namespace Tabulation
                     return;
                 }
 
-                uriString = "http://" + MainPage._ServerAddress +
-                   "/tabulation/commit_vote/" +
-                   MainPage._JudgeID + "/" + // judge id
-                   candid_id + "/" + // candidate id 
-                   "7/" + //cheer categ
-                   building_total;
+                uriString = string.Format("http://{0}/tabulation/commit_vote/{1}/{2}/10/{3}",
+                                        MainPage._ServerAddress, MainPage._JudgeID, candid_id, tumbling_total);
 
                 requestUri = new Uri(uriString);
                 webResponseBody = string.Empty;
@@ -205,32 +218,8 @@ namespace Tabulation
                 }
                 catch (Exception ex)
                 {
-                    webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                }
-
-                if (!(webResponseBody == "ok"))
-                {
-                    return;
-                }
-
-                uriString = "http://" + MainPage._ServerAddress +
-                   "/tabulation/commit_vote/" +
-                   MainPage._JudgeID + "/" + // judge id
-                   candid_id + "/" + // candidate id 
-                   "10/" + //cheer categ
-                   tumbling_total;
-
-                requestUri = new Uri(uriString);
-                webResponseBody = string.Empty;
-                try
-                {
-                    webResponse = await webClient.GetAsync(requestUri);
-                    webResponse.EnsureSuccessStatusCode();
-                    webResponseBody = await webResponse.Content.ReadAsStringAsync();
-                }
-                catch (Exception ex)
-                {
-                    webResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                    webResponseBody = string.Format("Error: {0} Message: {1}", 
+                                                ex.HResult.ToString("X"), ex.Message);
                 }
 
                 if (!(webResponseBody == "ok"))
